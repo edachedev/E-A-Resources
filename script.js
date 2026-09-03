@@ -1,72 +1,188 @@
-const menu=document.querySelector(".menu"),nav=document.querySelector(".header nav");menu?.addEventListener("click",()=>nav.classList.toggle("open"));document.querySelectorAll("nav a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
-const slides=[...document.querySelectorAll(".slide")],dots=[...document.querySelectorAll(".dot")],titles=["Integrated Vision","Petroleum & Energy","Real Estate Development","Engineering & Industry"];let current=0,timer;
-function show(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle("active",i===current));dots.forEach((d,i)=>d.classList.toggle("active",i===current));document.querySelector("#counter").textContent=String(current+1).padStart(2,"0");document.querySelector("#caption").textContent=titles[current]}
-function start(){clearInterval(timer);timer=setInterval(()=>show(current+1),4500)}document.querySelector(".next").onclick=()=>{show(current+1);start()};document.querySelector(".prev").onclick=()=>{show(current-1);start()};dots.forEach((d,i)=>d.onclick=()=>{show(i);start()});document.querySelector(".slider").onmouseenter=()=>clearInterval(timer);document.querySelector(".slider").onmouseleave=start;show(0);start();
-function sendDemo(e){e.preventDefault();document.querySelector("#notice").textContent="Thank you. This demo form is ready to connect to the company's email/CRM.";e.target.reset();return false}
-/* ==========================================
-   SERVICES SLIDER PROGRESS
-========================================== */
+// ==========================================
+// MOBILE MENU
+// ==========================================
 
-const progressDots = document.querySelectorAll(".progress-dot");
+const menu = document.querySelector(".menu");
+const nav = document.querySelector(".header nav");
 
-let serviceIndex = 0;
+menu?.addEventListener("click", () => {
+    nav.classList.toggle("open");
+});
 
-setInterval(() => {
+document.querySelectorAll("nav a").forEach((a) => {
+    a.addEventListener("click", () => {
+        nav.classList.remove("open");
+    });
+});
 
-    serviceIndex++;
 
-    if (serviceIndex >= progressDots.length) {
-        serviceIndex = 0;
-    }
+// ==========================================
+// HERO IMAGE SLIDER
+// ==========================================
 
-    progressDots.forEach((dot) => {
-        dot.classList.remove("active");
+const slides = [...document.querySelectorAll(".slide")];
+const dots = [...document.querySelectorAll(".dot")];
+
+const titles = [
+    "Integrated Vision",
+    "Petroleum & Energy",
+    "Real Estate Development",
+    "Engineering & Industry"
+];
+
+let current = 0;
+let timer;
+
+
+// Show selected hero slide
+function show(n) {
+
+    if (!slides.length) return;
+
+    current = (n + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === current);
     });
 
-    progressDots[serviceIndex].classList.add("active");
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
+    });
 
-}, 4500);
-/* ==========================================
-   E&A RESOURCES
-   CONTINUOUS SERVICES SLIDER
-========================================== */
+    const counter = document.querySelector("#counter");
+    const caption = document.querySelector("#caption");
 
-const servicesTrack = document.querySelector(".services-track");
+    if (counter) {
+        counter.textContent = String(current + 1).padStart(2, "0");
+    }
 
-const originalCards = Array.from(
-    servicesTrack.querySelectorAll(".service-card")
-);
+    if (caption) {
+        caption.textContent = titles[current] || "";
+    }
+}
 
 
-/* Automatically create a second copy */
+// Start automatic hero slideshow
+function startHeroSlider() {
 
-originalCards.forEach((card) => {
+    clearInterval(timer);
 
-    const clone = card.cloneNode(true);
+    timer = setInterval(() => {
+        show(current + 1);
+    }, 4500);
+}
 
-    servicesTrack.appendChild(clone);
+
+// Next button
+document.querySelector(".next")?.addEventListener("click", () => {
+    show(current + 1);
+    startHeroSlider();
+});
+
+
+// Previous button
+document.querySelector(".prev")?.addEventListener("click", () => {
+    show(current - 1);
+    startHeroSlider();
+});
+
+
+// Hero dots
+dots.forEach((dot, i) => {
+
+    dot.addEventListener("click", () => {
+        show(i);
+        startHeroSlider();
+    });
 
 });
 
 
-/* Progress indicators */
+// Pause when mouse is over hero
+const heroSlider = document.querySelector(".slider");
+
+heroSlider?.addEventListener("mouseenter", () => {
+    clearInterval(timer);
+});
+
+heroSlider?.addEventListener("mouseleave", () => {
+    startHeroSlider();
+});
+
+
+// Start hero slider
+show(0);
+startHeroSlider();
+
+
+// ==========================================
+// CONTACT FORM DEMO
+// ==========================================
+
+function sendDemo(e) {
+
+    e.preventDefault();
+
+    const notice = document.querySelector("#notice");
+
+    if (notice) {
+        notice.textContent =
+            "Thank you. This demo form is ready to connect to the company's email/CRM.";
+    }
+
+    e.target.reset();
+
+    return false;
+}
+
+
+// ==========================================
+// SERVICES SLIDER
+// ==========================================
+
+const servicesTrack = document.querySelector(".services-track");
+
+if (servicesTrack) {
+
+    const originalCards = Array.from(
+        servicesTrack.querySelectorAll(".service-card")
+    );
+
+    // Create a second copy of the cards
+    originalCards.forEach((card) => {
+
+        const clone = card.cloneNode(true);
+
+        servicesTrack.appendChild(clone);
+
+    });
+}
+
+
+// ==========================================
+// SERVICES PROGRESS INDICATORS
+// ==========================================
 
 const progressDots = document.querySelectorAll(".progress-dot");
 
 let serviceIndex = 0;
 
-setInterval(() => {
+if (progressDots.length) {
 
-    serviceIndex++;
+    setInterval(() => {
 
-    if (serviceIndex >= progressDots.length) {
-        serviceIndex = 0;
-    }
+        serviceIndex++;
 
-    progressDots.forEach((dot) => {
-        dot.classList.remove("active");
-    });
+        if (serviceIndex >= progressDots.length) {
+            serviceIndex = 0;
+        }
 
-    progressDots[serviceIndex].classList.add("active");
+        progressDots.forEach((dot) => {
+            dot.classList.remove("active");
+        });
 
-}, 4500);
+        progressDots[serviceIndex].classList.add("active");
+
+    }, 4500);
+
+}
