@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | E&A Resources</title>
+
+    <meta name="description"
+          content="Learn more about E&A Resources, our story, business interests, leadership, values and commitment to building wealth, powering progress and enriching lives.">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .about-page {
+            background: #fff;
+            color: #111;
+        }
+
+        .about-hero {
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 7%;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.68)),
+                url("assets/hero-01-ai-vision.png") center/cover no-repeat;
+        }
+
+        .about-hero-content {
+            max-width: 850px;
+            color: #fff;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            line-height: 1;
+            margin: 15px 0 25px;
+        }
+
+        .about-hero h1 span {
+            color: #c9a227;
+        }
+
+        .about-hero p {
+            max-width: 720px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,.86);
+        }
+
+        .about-container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+        .about-block {
+            padding: 90px 0;
+        }
+
+        .about-block:nth-child(even) {
+            background: #f7f7f5;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-grid h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            margin: 10px 0 20px;
+        }
+
+        .about-grid h2 span {
+            color: #c9a227;
+        }
+
+        .about-grid p {
+            line-height: 1.85;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .about-image {
+            min-height: 420px;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-story-image {
+            background-image: url("assets/hero-01-ai-vision.png");
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            transition: .3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.08);
+        }
+
+        .about-card span {
+            display: block;
+            color: #c9a227;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .about-card h3 {
+            margin: 0 0 12px;
+            font-size: 22px;
+        }
+
+        .about-card p {
+            margin: 0;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            padding: 30px 24px;
+            border-top: 3px solid #c9a227;
+            background: #fff;
+        }
+
+        .value-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .founder-about {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .founder-about img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .founder-about h2 {
+            font-size: clamp(32px, 4vw, 50px);
+            margin: 10px 0 20px;
+        }
+
+        .founder-about h2 span {
+            color: #c9a227;
+        }
+
+        .founder-about p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: #111;
+            color: #fff;
+        }
+
+        .about-cta h2 {
+            font-size: clamp(34px, 5vw, 58px);
+            margin: 10px 0 20px;
+        }
+
+        .about-cta h2 span {
+            color: #c9a227;
+        }
+
+        .about-cta p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: rgba(255,255,255,.75);
+        }
+
+        @media (max-width: 850px) {
+            .about-grid,
+            .founder-about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-image {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .about-hero {
+                padding: 100px 6%;
+            }
+
+            .about-block {
+                padding: 65px 0;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-about {
+                gap: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body class="about-page">
+
+<header class="header">
+    <a class="brand" href="index.html">
+        <b>E&amp;A</b>
+        <small>RESOURCES</small>
+    </a>
+
+    <button class="menu" aria-label="Menu">☰</button>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index.html#founder">Founder</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#investors">Investors</a>
+        <a href="mission.html">Mission &amp; Vision</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="gold" href="index.html#contact">Partner With Us</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="about-hero">
+    <div class="about-hero-content">
+        <p class="eyebrow">ABOUT E&amp;A RESOURCES</p>
+
+        <h1>
+            Building Today.<br>
+            <span>Creating Tomorrow.</span>
+        </h1>
+
+        <p>
+            E&amp;A Resources is a Nigerian enterprise focused on building
+            valuable businesses and opportunities across real estate,
+            energy, skills development, agriculture and other strategic areas.
+        </p>
+    </div>
+</section>
+
+<section class="about-block">
+    <div class="about-container">
+        <div class="about-grid">
+
+            <div>
+                <p class="eyebrow">WHO WE ARE</p>
+
+                <h2>
+                    A Nigerian company
+                    <span>built for value.</span>
+                </h2>
+
+                <p>
+                    E&amp;A Resources was established in 2023 with a vision
+                    to develop businesses that create lasting commercial
+                    and developmental value.
+                </p>
+
+                <p>
+                    The company operates with an entrepreneurial and
+                    engineering-informed approach, pursuing opportunities
+                    that can contribute meaningfully to customers,
+                    communities, partners and the wider Nigerian economy.
+                </p>
+            </div>
+
+            <div class="about-image about-story-image"></div>
+
+        </div>
+    </div>
+</section>
+
+<section class="about-block">
+    <div class="about-container">
+
+        <p class="eyebrow">WHAT WE DO</p>
+
+        <h2>
+            Our <span>Business Interests</span>
+        </h2>
+
+        <div class="about-cards">
+
+            <article class="about-card">
+                <span>01</span>
+                <h3>Real Estate Development</h3>
+                <p>
+                    Developing quality property opportunities with a focus
+                    on long-term value, functionality and sustainable growth.
+                </p>
+            </article>
+
+            <article class="about-card">
+                <span>02</span>
+                <h3>Downstream Sector, Refining &amp; Distribution</h3>
+                <p>
+                    Building opportunities within the downstream petroleum
+                    sector, including refining and distribution.
+                </p>
+            </article>
+
+            <article class="about-card">
+                <span>03</span>
+                <h3>Vocational Education &amp; Skills Development</h3>
+                <p>
+                    Supporting skills development and vocational education
+                    that can equip people with practical capabilities and
+                    create pathways to opportunity.
+                </p>
+            </article>
+
+            <article class="about-card">
+                <span>04</span>
+                <h3>Agriculture &amp; Food Production</h3>
+                <p>
+                    Exploring agricultural and food-production opportunities
+                    that contribute to productivity, value creation and growth.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="about-block">
+    <div class="about-container">
+
+        <p class="eyebrow">OUR APPROACH</p>
+
+        <h2>
+            Built around <span>lasting value.</span>
+        </h2>
+
+        <div class="values-grid">
+
+            <article class="value-card">
+                <h3>Excellence</h3>
+                <p>
+                    We pursue high standards in the businesses and
+                    opportunities we undertake.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <h3>Integrity</h3>
+                <p>
+                    We believe in responsible business practices and
+                    trusted relationships.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <h3>Innovation</h3>
+                <p>
+                    We remain open to new ideas, opportunities and
+                    better ways of creating value.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <h3>Partnership</h3>
+                <p>
+                    We value strategic relationships that create
+                    sustainable benefits for all stakeholders.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="about-block">
+    <div class="about-container">
+
+        <div class="founder-about">
+
+            <div>
+                <img
+                    src="assets/founder-edache-james-adakole.jpg"
+                    alt="Edache James Adakole">
+            </div>
+
+            <div>
+                <p class="eyebrow">LEADERSHIP</p>
+
+                <h2>
+                    Engr. <span>Edache</span> James Adakole
+                </h2>
+
+                <p>
+                    Edache James Adakole is the Founder and Chief Executive
+                    Officer of E&amp;A Resources.
+                </p>
+
+                <p>
+                    He studied Chemical Engineering at the University of
+                    Abuja and gained professional experience with
+                    Manzuwa Ventures before establishing E&amp;A Resources
+                    in 2023.
+                </p>
+
+                <p>
+                    As Founder and CEO, he provides leadership and strategic
+                    direction as the company develops its interests,
+                    builds partnerships and pursues opportunities across
+                    Nigeria.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="about-cta">
+    <p class="eyebrow">LET'S BUILD TOGETHER</p>
+
+    <h2>
+        Explore an opportunity with
+        <span>E&amp;A Resources.</span>
+    </h2>
+
+    <p>
+        We welcome conversations with investors, partners, suppliers,
+        institutions and organisations interested in building sustainable
+        value.
+    </p>
+
+    <a class="btn gold" href="index.html#contact">
+        Contact Us →
+    </a>
+</section>
+
+</main>
+
+<footer>
+    <div class="brand">
+        <b>E&amp;A</b>
+        <small>RESOURCES</small>
+    </div>
+
+    <p>
+        Building wealth, powering progress, and enriching lives.
+    </p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="index.html#founder">Founder</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+
+    <small>
+        © 2026 E&amp;A Resources. All Rights Reserved.
+        • Proudly Nigerian. Globally Competitive.
+    </small>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector("nav");
+
+    if (menu && nav) {
+        menu.addEventListener("click", () => {
+            nav.classList.toggle("open");
+        });
+
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("open");
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

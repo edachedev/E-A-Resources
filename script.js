@@ -1,188 +1,142 @@
-// ==========================================
-// MOBILE MENU
-// ==========================================
+/* ================= MOBILE MENU ================= */
 
 const menu = document.querySelector(".menu");
 const nav = document.querySelector(".header nav");
 
-menu?.addEventListener("click", () => {
-    nav.classList.toggle("open");
-});
+if (menu && nav) {
 
-document.querySelectorAll("nav a").forEach((a) => {
-    a.addEventListener("click", () => {
-        nav.classList.remove("open");
+    menu.addEventListener("click", () => {
+        nav.classList.toggle("open");
     });
-});
+
+    nav.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+            nav.classList.remove("open");
+        });
+
+    });
+
+}
 
 
-// ==========================================
-// HERO IMAGE SLIDER
-// ==========================================
+/* ================= HERO SLIDER ================= */
 
-const slides = [...document.querySelectorAll(".slide")];
-const dots = [...document.querySelectorAll(".dot")];
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const nextButton = document.querySelector(".next");
+const prevButton = document.querySelector(".prev");
+const counter = document.getElementById("counter");
+const caption = document.getElementById("caption");
 
-const titles = [
+const captions = [
     "Integrated Vision",
-    "Petroleum & Energy",
-    "Real Estate Development",
-    "Engineering & Industry"
+    "Real Estate",
+    "Energy & Development",
+    "Building the Future"
 ];
 
-let current = 0;
-let timer;
+let currentSlide = 0;
+let slideTimer;
 
 
-// Show selected hero slide
-function show(n) {
+function showSlide(index) {
 
     if (!slides.length) return;
 
-    current = (n + slides.length) % slides.length;
+    currentSlide = (index + slides.length) % slides.length;
 
     slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === current);
+        slide.classList.toggle("active", i === currentSlide);
     });
 
     dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === current);
+        dot.classList.toggle("active", i === currentSlide);
     });
 
-    const counter = document.querySelector("#counter");
-    const caption = document.querySelector("#caption");
-
     if (counter) {
-        counter.textContent = String(current + 1).padStart(2, "0");
+        counter.textContent =
+            String(currentSlide + 1).padStart(2, "0");
     }
 
     if (caption) {
-        caption.textContent = titles[current] || "";
+        caption.textContent =
+            captions[currentSlide] || "E&A Resources";
     }
+
 }
 
 
-// Start automatic hero slideshow
-function startHeroSlider() {
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
 
-    clearInterval(timer);
 
-    timer = setInterval(() => {
-        show(current + 1);
+function previousSlide() {
+    showSlide(currentSlide - 1);
+}
+
+
+function startSlider() {
+
+    clearInterval(slideTimer);
+
+    slideTimer = setInterval(() => {
+        nextSlide();
     }, 4500);
+
 }
 
 
-// Next button
-document.querySelector(".next")?.addEventListener("click", () => {
-    show(current + 1);
-    startHeroSlider();
-});
+if (nextButton) {
+
+    nextButton.addEventListener("click", () => {
+        nextSlide();
+        startSlider();
+    });
+
+}
 
 
-// Previous button
-document.querySelector(".prev")?.addEventListener("click", () => {
-    show(current - 1);
-    startHeroSlider();
-});
+if (prevButton) {
+
+    prevButton.addEventListener("click", () => {
+        previousSlide();
+        startSlider();
+    });
+
+}
 
 
-// Hero dots
-dots.forEach((dot, i) => {
+dots.forEach((dot, index) => {
 
     dot.addEventListener("click", () => {
-        show(i);
-        startHeroSlider();
+        showSlide(index);
+        startSlider();
     });
 
 });
 
 
-// Pause when mouse is over hero
-const heroSlider = document.querySelector(".slider");
-
-heroSlider?.addEventListener("mouseenter", () => {
-    clearInterval(timer);
-});
-
-heroSlider?.addEventListener("mouseleave", () => {
-    startHeroSlider();
-});
+showSlide(0);
+startSlider();
 
 
-// Start hero slider
-show(0);
-startHeroSlider();
+/* ================= CONTACT FORM ================= */
 
+function sendDemo(event) {
 
-// ==========================================
-// CONTACT FORM DEMO
-// ==========================================
+    event.preventDefault();
 
-function sendDemo(e) {
-
-    e.preventDefault();
-
-    const notice = document.querySelector("#notice");
+    const notice = document.getElementById("notice");
 
     if (notice) {
         notice.textContent =
-            "Thank you. This demo form is ready to connect to the company's email/CRM.";
+            "Thank you. Your enquiry has been received.";
     }
 
-    e.target.reset();
+    event.target.reset();
 
     return false;
 }
 
-
-// ==========================================
-// SERVICES SLIDER
-// ==========================================
-
-const servicesTrack = document.querySelector(".services-track");
-
-if (servicesTrack) {
-
-    const originalCards = Array.from(
-        servicesTrack.querySelectorAll(".service-card")
-    );
-
-    // Create a second copy of the cards
-    originalCards.forEach((card) => {
-
-        const clone = card.cloneNode(true);
-
-        servicesTrack.appendChild(clone);
-
-    });
-}
-
-
-// ==========================================
-// SERVICES PROGRESS INDICATORS
-// ==========================================
-
-const progressDots = document.querySelectorAll(".progress-dot");
-
-let serviceIndex = 0;
-
-if (progressDots.length) {
-
-    setInterval(() => {
-
-        serviceIndex++;
-
-        if (serviceIndex >= progressDots.length) {
-            serviceIndex = 0;
-        }
-
-        progressDots.forEach((dot) => {
-            dot.classList.remove("active");
-        });
-
-        progressDots[serviceIndex].classList.add("active");
-
-    }, 4500);
-
-}
